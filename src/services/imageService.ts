@@ -10,8 +10,7 @@ tf.ready().then(() => console.log("TensorFlow.js backend is ready"));
 
 export const analyzeImageService = async (imageData: string) => {
   try {
-    const buffer = Buffer.from(imageData.split(",")[1], "base64");
-    const tensor = tf.node.decodeImage(buffer);
+    const tensor = tf.node.decodeImage(Buffer.from(imageData, "base64"));
 
     const model = await cocoSsd.load();
     const predictions = await model.detect(tensor as any);

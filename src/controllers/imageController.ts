@@ -3,10 +3,14 @@ import { analyzeImageService } from "../services/imageService";
 import Analysis from "../models/analysisModel";
 
 export const analyzeImage = async (req: Request, res: Response) => {
-  const { image } = req.body;
-
   try {
-    const result = await analyzeImageService(image);
+    console.log(req.file);
+
+    const imageData: string = (req.file as Express.Multer.File).buffer.toString(
+      "base64"
+    );
+
+    const result = await analyzeImageService(imageData);
     res.json({ message: "Image processed successfully", data: result });
   } catch (error: any) {
     res
