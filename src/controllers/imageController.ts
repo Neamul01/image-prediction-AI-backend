@@ -4,7 +4,7 @@ import Analysis from "../models/analysisModel";
 
 export const analyzeImage = async (req: Request, res: Response) => {
   try {
-    console.log(req.file);
+    // console.log(req.file);
 
     const imageData: string = (req.file as Express.Multer.File).buffer.toString(
       "base64"

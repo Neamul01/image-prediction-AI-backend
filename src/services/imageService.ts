@@ -1,6 +1,5 @@
 import * as tf from "@tensorflow/tfjs-node";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
-import { Canvas, Image } from "canvas";
 
 // Register the backend
 tf.setBackend("tensorflow");
@@ -10,7 +9,12 @@ tf.ready().then(() => console.log("TensorFlow.js backend is ready"));
 
 export const analyzeImageService = async (imageData: string) => {
   try {
-    const tensor = tf.node.decodeImage(Buffer.from(imageData, "base64"));
+    let tensor = tf.node.decodeImage(Buffer.from(imageData, "base64"));
+
+    // Remove alpha channel if it exists
+    if (tensor.shape[2] === 4) {
+      tensor = tensor.slice([0, 0, 0], [-1, -1, 3]);
+    }
 
     const model = await cocoSsd.load();
     const predictions = await model.detect(tensor as any);
