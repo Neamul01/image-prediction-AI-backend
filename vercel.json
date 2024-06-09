@@ -3,8 +3,16 @@
   "builds": [
     {
       "src": "src/index.ts",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["src/**/*.ts"]
+      }
     }
   ],
+  "functions": {
+    "api/*.ts": {
+      "memory": 1024
+    }
+  },
   "routes": [{ "src": "/(.*)", "dest": "/src/index.ts" }]
 }
