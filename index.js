@@ -1,8 +1,8 @@
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import imageRoutes from "./routes/imageRoutes";
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const imageRoutes = require("./src/routes/imageRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;

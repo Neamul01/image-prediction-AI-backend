@@ -1,15 +1,11 @@
-import mongoose, { Schema, Document } from "mongoose";
+const mongoose = require("mongoose");
 
-interface IAnalysis extends Document {
-  predictions: any[];
-  area: string;
-  trackedObjects: string[];
-}
+const { Schema } = mongoose;
 
-const AnalysisSchema: Schema = new Schema({
+const AnalysisSchema = new Schema({
   predictions: { type: Array, required: true },
   area: { type: String, required: true },
   trackedObjects: { type: Array, required: true },
 });
 
-export default mongoose.model<IAnalysis>("Analysis", AnalysisSchema);
+module.exports = mongoose.model("Analysis", AnalysisSchema);

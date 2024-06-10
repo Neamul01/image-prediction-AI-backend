@@ -1,5 +1,5 @@
-import * as tf from "@tensorflow/tfjs-node";
-import * as cocoSsd from "@tensorflow-models/coco-ssd";
+const tf = require("@tensorflow/tfjs-node");
+const cocoSsd = require("@tensorflow-models/coco-ssd");
 
 // Register the backend
 tf.setBackend("tensorflow");
@@ -29,7 +29,7 @@ export const analyzeImageService = async (imageData: string) => {
 
     // Randomly select an area type (this is just a placeholder)
     const area = areaTypes[Math.floor(Math.random() * areaTypes.length)];
-    const trackedObjects = predictions.map((pred) => pred.class);
+    const trackedObjects = predictions.map((pred: any) => pred.class);
 
     // Return the predictions, area type, and tracked objects
     return { predictions, area, trackedObjects };

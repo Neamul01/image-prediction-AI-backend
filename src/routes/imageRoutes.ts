@@ -1,6 +1,9 @@
-import { Router } from "express";
-import { analyzeImage, saveAnalysis } from "../controllers/imageController";
-import multer from "multer";
+const { Router } = require("express");
+const {
+  analyzeImage,
+  saveAnalysis,
+} = require("../controllers/imageController");
+const multer = require("multer");
 
 const upload = multer();
 
